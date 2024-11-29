@@ -5,6 +5,7 @@ import teddyImage from '../assets/teddy.jpg';
 import legoImage from '../assets/lego.jpg';
 import bearImage from '../assets/bear.jpg';
 import kids from '../assets/kids-toys.jpeg'
+import { toast } from "react-toastify";
 
 const toys = [
     { id: 1, name: 'Teddy Bear', price: 20, image: teddyImage },
@@ -21,9 +22,10 @@ const Home = () => {
     const handleAddToCart = (toy) => {
         const existingItem = cart.find((item) => item.id === toy.id);
         if(existingItem){
-            alert('This item is already in the cart');
+            toast.info("This item already exists in the cart",{position:'bottom-right'});
         }else{
             dispatch(addToCart(toy));
+            toast.success("Item added to cart",{position:'bottom-right'})
         }
     };
 

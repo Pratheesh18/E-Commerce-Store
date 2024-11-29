@@ -5,6 +5,7 @@ import {TextField,Button,Paper,Typography,Box} from '@mui/material';
 import { useDispatch } from "react-redux";
 import { registration } from "../slices/authSlice";
 import { useNavigate,Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const registerSchema = yup.object({
     name : yup.string().required('Name is required'),
@@ -24,10 +25,10 @@ const Register = () => {
         const userExists = registeredUsers.some(user => user.email === data.email);
 
         if(userExists){
-            alert('User already exists');
+            toast.info('User already Exists',{position:'bottom-right'});
         }else{
             dispatch(registration(data));
-            alert('Registration Successful');
+            toast.success("Registration successful",{position:'bottom-right'});
             navigate('/');
         }
     }

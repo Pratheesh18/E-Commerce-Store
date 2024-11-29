@@ -5,6 +5,7 @@ import {TextField,Button,Paper,Typography,Box} from '@mui/material'
 import {useDispatch} from 'react-redux';
 import { login } from '../slices/authSlice';
 import { useNavigate , Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const loginSchema = yup.object({
@@ -24,10 +25,10 @@ const Login = () => {
 
         if(user){
             dispatch(login(user));
-            alert('Login Successful');
+            toast.success('Login Successful',{position:'bottom-right'});
             navigate('/home')
         }else{
-            alert('Invalid email or password');
+            toast.error('Error! Invalid email or password');
         }
     };
 
