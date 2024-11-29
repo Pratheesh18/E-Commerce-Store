@@ -8,6 +8,11 @@ const authSlice = createSlice({
     name :'auth',
     initialState,
     reducers:{
+        registration(state,action){
+            const registeredUsers = JSON.parse(localStorage.getItem('users')) || [];
+            registeredUsers.push(action.payload);
+            localStorage.setItem('users',JSON.stringify(registeredUsers))
+        },
         login(state,action){
             state.user = action.payload;
             localStorage.setItem('user',JSON.stringify(action.payload));
@@ -19,5 +24,5 @@ const authSlice = createSlice({
     }
 });
 
-export const {login,logout} = authSlice.actions;
+export const {login,logout,registration} = authSlice.actions;
 export default authSlice.reducer;
