@@ -1,8 +1,8 @@
-
 import { useDispatch , useSelector } from "react-redux";
 import { removeFromCart,updateQuantity } from "../slices/cartSlice";
 import { Box,Typography, Grid2 as Grid,IconButton,Card,CardContent } from "@mui/material";
 import {Add, Remove,Delete} from '@mui/icons-material';
+import { toast } from "react-toastify";
 
 const Cart = () => {
 
@@ -18,10 +18,11 @@ const Cart = () => {
 
     const handleRemove = (id) => {
         dispatch(removeFromCart(id));
+        toast.success("Item removed from cart",{position:'bottom-right'});
     }
 
     return(
-        <Box sx={{padding:2}}>
+        <Box sx={{padding:2 , display:'flex',justifyContent:'center',flexDirection:'column',alignItems:'center',gap:5}}>
             <Typography variant="h5" gutterBottom>
                 Your Cart
             </Typography>
@@ -50,7 +51,7 @@ const Cart = () => {
 
                 ))}
             </Grid>
-            <Typography variant="h6" sx={{mt:2}}>
+            <Typography variant="h6" sx={{mt:4}}>
                 Total Price : ${totalPrice.toFixed(2)}
             </Typography>
         </Box>

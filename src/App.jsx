@@ -42,7 +42,7 @@ const App = () => {
           />
         </Routes>
       </Router>
-      <ToastContainer autoClose={4000} hideProgressBar={false} theme="dark" />
+      <ToastContainer autoClose={4000} hideProgressBar={false} theme="light" />
     </Provider>
   );
 };
