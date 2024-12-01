@@ -73,8 +73,7 @@ const Home = () => {
       return 0;
     });
     return (
-      <Box sx={{ padding: 2 }}>
-        {/* Search Bar */}
+      <Box sx={{ padding: 2}}>
         <TextField
           label="Search for Toys"
           variant="outlined"

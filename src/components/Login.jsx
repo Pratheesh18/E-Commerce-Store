@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { TextField, Button, Paper, Typography, Box } from "@mui/material";
+import { TextField, Button, Paper, Typography, Box} from "@mui/material";
 import { useDispatch } from "react-redux";
 import { login } from "../slices/authSlice";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Password from "./Password";
 
 const loginSchema = yup.object({
   email: yup.string().email("Invalid Email").required("Email is required"),
@@ -23,6 +24,7 @@ const Login = () => {
   } = useForm({ resolver: yupResolver(loginSchema) });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   const onSubmit = (data) => {
     const registeredUsers = JSON.parse(localStorage.getItem("users")) || [];
@@ -45,9 +47,10 @@ const Login = () => {
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
+      sx={{backgroundColor: '#5d8aaf'}}
     >
       <Paper elevation={3} sx={{ padding: 4, width: 400 }}>
-        <Typography  variant="h5" gutterBottom>
+        <Typography sx={{display:'flex',justifyContent:'center'}}  variant="h5" gutterBottom>
           Login
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -59,15 +62,7 @@ const Login = () => {
             error={!!errors.email}
             helperText={errors.email?.message}
           />
-          <TextField
-            label="Password"
-            type="password"
-            fullWidth
-            margin="normal"
-            {...register("password")}
-            error={!!errors.password}
-            helperText={errors.password?.message}
-          />
+          <Password label="Password" error={!!errors.password} helperText={errors.password?.message} register={register("password")} />
           <Button
             type="submit"
             variant="contained"

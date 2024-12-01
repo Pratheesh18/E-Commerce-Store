@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { registration } from "../slices/authSlice";
 import { useNavigate,Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Password from "./Password";
 
 const registerSchema = yup.object({
     name : yup.string().required('Name is required'),
@@ -34,9 +35,9 @@ const Register = () => {
     }
 
     return(
-        <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh"  sx={{backgroundColor: '#5d8aaf'}}>
         <Paper elevation={3} sx={{ padding: 4, width: 400 }}>
-          <Typography variant="h5" gutterBottom>
+          <Typography sx={{display:'flex',justifyContent:'center'}} variant="h5" gutterBottom>
             Register
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -56,15 +57,7 @@ const Register = () => {
               error={!!errors.email}
               helperText={errors.email?.message}
             />
-            <TextField
-              label="Password"
-              type="password"
-              fullWidth
-              margin="normal"
-              {...register('password')}
-              error={!!errors.password}
-              helperText={errors.password?.message}
-            />
+            <Password label="Password" error={!!errors.password} helperText={errors.password?.message} register={register("password")} />
             <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
               Register
             </Button>
