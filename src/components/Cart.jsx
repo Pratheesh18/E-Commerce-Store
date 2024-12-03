@@ -32,7 +32,6 @@ const Cart = () => {
                         <Card sx={{padding:2,textAlign:'center'}}>
                         <CardMedia component="img" sx={{height:180,objectFit:'contain',margin:'0 auto',width:'100%',maxWidth:200}} image={item.image} alt={item.name} />
                             <CardContent sx={{display:'flex',flexDirection:"column",alignItems:'center',gap:1}}>
-                                
                                 <Typography sx={{flexGrow:1}}> {item.name} </Typography>
                                 <Typography> ${item.price} </Typography>
                                 <Box sx={{display:'flex',alignItems:'center',gap:2}}>

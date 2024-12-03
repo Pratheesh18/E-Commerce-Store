@@ -9,7 +9,6 @@ import {
   CardMedia,
   Typography,
   Button,
-  TextField,
   FormControl,
   Select,
   MenuItem,
@@ -22,6 +21,7 @@ import woodenImage from "../assets/wooden.png";
 import batMobileImage from "../assets/batMobile.jpg";
 import laptopImage from "../assets/laptop.jpg";
 import { toast } from "react-toastify";
+import Search from "./Search";
 
 const toys = [
   { id: 1, name: "Teddy Bear", price: 20, image: teddyImage },
@@ -51,11 +51,6 @@ const Home = () => {
     }
   };
 
-  const handleSearchChange = (event) => {
-    setSearchName(event.target.value.toLowerCase());
-  };
-
-
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
   };
@@ -72,16 +67,11 @@ const Home = () => {
       if (filter === "name") return a.name.localeCompare(b.name);
       return 0;
     });
+
+
     return (
       <Box sx={{ padding: 2}}>
-        <TextField
-          label="Search for Toys"
-          variant="outlined"
-          fullWidth
-          sx={{ marginBottom: 2 }}
-          value={searchName}
-          onChange={handleSearchChange}
-        />
+        <Search onSearch={setSearchName} />
         <Box
           sx={{
             display: "flex",
@@ -124,7 +114,7 @@ const Home = () => {
               sx={{
                 width: "100%",
                 maxWidth: 300,
-                height: 350, // Fixed height for all cards
+                height: 350, 
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -136,7 +126,7 @@ const Home = () => {
               <CardMedia
                 component="img"
                 sx={{
-                  height: 180, // Fixed image height
+                  height: 180, 
                   objectFit: "contain",
                 }}
                 image={toy.image}
