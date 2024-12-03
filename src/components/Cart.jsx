@@ -1,6 +1,6 @@
 import { useDispatch , useSelector } from "react-redux";
 import { removeFromCart,updateQuantity } from "../slices/cartSlice";
-import { Box,Typography, Grid2 as Grid,IconButton,Card,CardContent } from "@mui/material";
+import { Box,Typography, Grid2 as Grid,IconButton,Card,CardContent,CardMedia,Button } from "@mui/material";
 import {Add, Remove,Delete} from '@mui/icons-material';
 import { toast } from "react-toastify";
 
@@ -29,11 +29,13 @@ const Cart = () => {
             <Grid container spacing={2}>
                 {cart.map((item) => (
                     <Grid item xs={12} key={item.id}>
-                        <Card>
-                            <CardContent sx={{display:'flex',alignItems:'center'}}>
+                        <Card sx={{padding:2,textAlign:'center'}}>
+                        <CardMedia component="img" sx={{height:180,objectFit:'contain',margin:'0 auto',width:'100%',maxWidth:200}} image={item.image} alt={item.name} />
+                            <CardContent sx={{display:'flex',flexDirection:"column",alignItems:'center',gap:1}}>
+                                
                                 <Typography sx={{flexGrow:1}}> {item.name} </Typography>
                                 <Typography> ${item.price} </Typography>
-                                <Box sx={{display:'flex',alignItems:'center',mx:2}}>
+                                <Box sx={{display:'flex',alignItems:'center',gap:2}}>
                                     <IconButton onClick={() => handleQuantityChange(item.id,item.quantity-1)}>
                                         <Remove />
                                     </IconButton>
@@ -42,9 +44,9 @@ const Cart = () => {
                                         <Add />
                                     </IconButton>
                                 </Box>
-                                <IconButton color="secondary" onClick={() => handleRemove(item.id)}>
-                                    <Delete />
-                                </IconButton>
+                                <Button variant="contained"  color="primary" onClick={() => handleRemove(item.id)} startIcon={<Delete />}>
+                                    Remove
+                                </Button>
                             </CardContent>
                         </Card>
                     </Grid>

@@ -117,54 +117,49 @@ const Home = () => {
             Reset Filters
           </Button>
         </Box>
-        <Grid container spacing={2}>
-          {filteredToys.map((toy) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={3}
-              key={toy.id}
+        <Grid container spacing={3}>
+        {filteredToys.map((toy) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={toy.id}>
+            <Card
               sx={{
+                width: "100%",
+                maxWidth: 300,
+                height: 350, // Fixed height for all cards
                 display: "flex",
-                justifyContent: "center",
-                marginTop:3
+                flexDirection: "column",
+                justifyContent: "space-between",
+                ":hover": {
+                  boxShadow: 6,
+                },
               }}
             >
-              <Card
+              <CardMedia
+                component="img"
                 sx={{
-                  width: "100%",
-                  maxWidth: 300,
-                  ":hover": {
-                    boxShadow: 6,
-                  },
+                  height: 180, // Fixed image height
+                  objectFit: "contain",
                 }}
-              >
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={toy.image}
-                  alt={toy.name}
-                />
-                <CardContent>
-                  <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                    {toy.name}
-                  </Typography>
-                  <Typography>${toy.price}</Typography>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => handleAddToCart(toy)}
-                    sx={{ mt: 1 }}
-                  >
-                    Add to Cart
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+                image={toy.image}
+                alt={toy.name}
+              />
+              <CardContent>
+                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  {toy.name}
+                </Typography>
+                <Typography>${toy.price}</Typography>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleAddToCart(toy)}
+                  sx={{ mt: 1 }}
+                >
+                  Add to Cart
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
       </Box>
     );
 };
