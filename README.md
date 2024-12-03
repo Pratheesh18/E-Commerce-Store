@@ -8,7 +8,8 @@ A responsive and interactive toy store application built with **React**, **Redux
 
 - User Authentication (Login and Registration) with form validation using `react-hook-form` and `Yup`.
 - Password visibility toggle in login and registration forms.
-- Persistent shopping cart managed with Redux and localStorage.
+- Persistent shopping cart managed with `redux toolkit` and localStorage.
+- Debounced search functionality to optimize user input handling.
 - Filter toys by name and sort by price or alphabetical order.
 - Reset filters for a default toy list view.
 - Responsive design for seamless usability across devices.
